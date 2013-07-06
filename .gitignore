@@ -1,0 +1,4 @@
+/packer_cache
+/dist
+/output-virtualbox
+*.box
