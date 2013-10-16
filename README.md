@@ -1,6 +1,8 @@
 packer-templates
 ================
 
-This is a [packer](http://www.packer.io/) template for Ubuntu (10.04.4 currently). It'll create a Vagrant box when it completes.
+This are [packer](http://www.packer.io/) templates for Ubuntu. 
+It'll create a Vagrant box when it completes.
 
-Tested with packer 0.1.4.
+* Ubuntu 10.04.4 is tested with packer 0.1.4.
+* Ubuntu 12.04.3 is tested with packer 0.3.5.
