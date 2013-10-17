@@ -28,3 +28,6 @@ usermod -s /bin/zsh vagrant
 
 #we have to reboot here, so the re-build of the virtualbox additions links against the new kernel/headers
 reboot
+
+#make sure we wait for the reboot, otherwise we will run in ugly race conditions
+sleep 999999 
