@@ -6,3 +6,4 @@ It'll create a Vagrant box when it completes.
 
 * Ubuntu 10.04.4 is tested with packer 0.1.4.
 * Ubuntu 12.04.3 is tested with packer 0.3.5.
+* Ubuntu 12.04.4 is tested with packer 0.5.1.
