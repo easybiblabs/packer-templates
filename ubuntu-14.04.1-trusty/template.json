@@ -30,9 +30,9 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "ca2531b8cd79ea5b778ede3a524779b9",
+      "iso_checksum": "{{user `iso_md5_checksum`}}",
       "iso_checksum_type": "md5",
-      "iso_url": "file:///Users/fh/isos/ubuntu-14.04.1-server-amd64.iso",
+      "iso_url": "{{user `iso_path`}}",
       "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -81,6 +81,14 @@
       ],
       "type": "shell"
     }
-  ]
+  ],
+  "description": "Vagrant Box for product development at ImagineEasy.com",
+  "min_packer_version": "0.7.5",
+  "variables": {
+    "chef_version": "11.10.4",
+    "iteration": "0.3",
+    "iso_md5_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
+    "iso_path": "/Users/till/iso/ubuntu-14.04.2-server-amd64.iso",
+    "ubuntu_version": "14.04.2"
+  }
 }
-
