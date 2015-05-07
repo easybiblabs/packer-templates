@@ -59,7 +59,7 @@
   "post-processors": [
     {
       "keep_input_artifact": false,
-      "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}-4.3.x_chef-{{user `chef_version`}}_{{user `iteration`}}.box",
+      "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box",
       "type": "vagrant"
     }
   ],
@@ -87,9 +87,10 @@
   "min_packer_version": "0.7.5",
   "variables": {
     "chef_version": "11.10.4",
-    "iteration": "0.3",
+    "iteration": "",
     "iso_md5_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
     "iso_path": "/Users/till/iso/ubuntu-14.04.2-server-amd64.iso",
-    "ubuntu_version": "14.04.2"
+    "ubuntu_version": "14.04.2",
+    "virtualbox_version": ""
   }
 }
