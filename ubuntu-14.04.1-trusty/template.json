@@ -59,6 +59,7 @@
   "post-processors": [
     {
       "keep_input_artifact": false,
+      "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}-4.3.x_chef-{{user `chef_version`}}_{{user `iteration`}}.box",
       "type": "vagrant"
     }
   ],
