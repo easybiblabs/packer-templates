@@ -85,6 +85,9 @@
   ],
   "description": "Vagrant Box for product development at ImagineEasy.com",
   "min_packer_version": "0.7.5",
+  "push": {
+    "name": "imagineeasy/vagrant-test"
+  },
   "variables": {
     "chef_version": "11.10.4",
     "iteration": "x.y.z",
