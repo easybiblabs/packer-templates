@@ -87,10 +87,10 @@
   "min_packer_version": "0.7.5",
   "variables": {
     "chef_version": "11.10.4",
-    "iteration": "",
+    "iteration": "x.y.z",
     "iso_md5_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
-    "iso_path": "/Users/till/iso/ubuntu-14.04.2-server-amd64.iso",
+    "iso_path": "http://releases.ubuntu.com/14.04/ubuntu-14.04.2-server-amd64.iso",
     "ubuntu_version": "14.04.2",
-    "virtualbox_version": ""
+    "virtualbox_version": "x.y.z"
   }
 }
