@@ -4,7 +4,7 @@
 
 ```
 $ packer build \
--var "virtualbox_version=${VBOXManage --version}" \
+-var "virtualbox_version=`VBoxManage --version`" \
 -var 'iteration=X' \
 template.json
 ```
