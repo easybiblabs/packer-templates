@@ -71,7 +71,7 @@
       "boot_wait": "10s",
       "disk_size": 40960,
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "guest_os_type": "linux",
+      "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_md5_checksum`}}",
       "iso_checksum_type": "md5",
