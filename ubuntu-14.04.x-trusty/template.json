@@ -113,6 +113,26 @@
         }
       },
       "type": "vagrant"
+    },
+    {
+      "artifact": "imagineeasy/vagrant",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "vmware_desktop",
+        "version": "{{user `iteration`}}"
+      },
+      "only": ["vmware-iso"],
+      "type": "atlas"
+    },
+    {
+      "artifact": "imagineeasy/vagrant",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "virtualbox",
+        "version": "{{user `iteration`}}"
+      },
+      "only": ["virtualbox-iso"],
+      "type": "atlas"
     }
   ],
   "provisioners": [
@@ -155,9 +175,8 @@
     "chef_version": "11.10.4",
     "iso_md5_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_path": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-    "iteration": "2.0",
+    "iteration": "2.0.1",
     "ubuntu_version": "14.04.3",
     "virtualbox_version": "4.3.30r101610"
   }
 }
-
