@@ -106,10 +106,10 @@
       "keep_input_artifact": false,
       "override": {
         "virtualbox": {
-          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vbox-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
         },
         "vmware": {
-          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vmware_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
         }
       },
       "type": "vagrant"
