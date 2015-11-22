@@ -102,38 +102,40 @@
   "description": "Vagrant Box for product development at ImagineEasy.com",
   "min_packer_version": "0.7.8",
   "post-processors": [
-    {
-      "keep_input_artifact": false,
-      "override": {
-        "virtualbox": {
-          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vbox-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+    [
+      {
+        "keep_input_artifact": false,
+        "override": {
+          "virtualbox": {
+            "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vbox-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          },
+          "vmware": {
+            "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vmware_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          }
         },
-        "vmware": {
-          "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vmware_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
-        }
+        "type": "vagrant"
       },
-      "type": "vagrant"
-    },
-    {
-      "artifact": "imagineeasy/vagrant",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "vmware_desktop",
-        "version": "{{user `iteration`}}"
+      {
+        "artifact": "imagineeasy/vagrant",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "vmware_desktop",
+          "version": "{{user `iteration`}}"
+        },
+        "only": ["vmware-iso"],
+        "type": "atlas"
       },
-      "only": ["vmware-iso"],
-      "type": "atlas"
-    },
-    {
-      "artifact": "imagineeasy/vagrant",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "virtualbox",
-        "version": "{{user `iteration`}}"
-      },
-      "only": ["virtualbox-iso"],
-      "type": "atlas"
-    }
+      {
+        "artifact": "imagineeasy/vagrant",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "virtualbox",
+          "version": "{{user `iteration`}}"
+        },
+        "only": ["virtualbox-iso"],
+        "type": "atlas"
+      }
+    ]
   ],
   "provisioners": [
     {
@@ -175,7 +177,7 @@
     "chef_version": "11.10.4",
     "iso_md5_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_path": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-    "iteration": "2.0.1",
+    "iteration": "2.0.2",
     "ubuntu_version": "14.04.3",
     "virtualbox_version": "4.3.30r101610"
   }
