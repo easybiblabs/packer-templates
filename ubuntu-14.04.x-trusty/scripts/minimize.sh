@@ -49,3 +49,6 @@ swapoff $swappart;
 dd if=/dev/zero of=$swappart;
 mkswap $swappart;
 swapon $swappart;
+
+# sync
+sync || true
