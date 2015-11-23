@@ -35,9 +35,3 @@ gem install apt-spy2
 # remove old software
 apt-get -y autoremove
 apt-get -y clean
-
-#we have to reboot here, so the re-build of the virtualbox additions links against the new kernel/headers
-reboot
-
-#make sure we wait for the reboot, otherwise we will run in ugly race conditions
-sleep 999999
