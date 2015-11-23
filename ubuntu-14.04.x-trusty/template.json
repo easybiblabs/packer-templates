@@ -148,7 +148,6 @@
             "scripts/chef-client.sh",
             "scripts/vagrant.sh",
             "scripts/networking.sh",
-            "scripts/cleanup.sh",
             "scripts/minimize.sh"
           ]
         },
@@ -159,7 +158,6 @@
             "scripts/chef-client.sh",
             "scripts/vagrant.sh",
             "scripts/networking.sh",
-            "scripts/cleanup.sh",
             "scripts/minimize.sh"
           ]
         }
@@ -174,7 +172,7 @@
     "chef_version": "11.10.4",
     "iso_md5_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_path": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-    "iteration": "2.0.3",
+    "iteration": "2.0.4",
     "ubuntu_version": "14.04.3",
     "virtualbox_version": "4.3.30r101610"
   }

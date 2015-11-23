@@ -32,6 +32,10 @@ apt-get -y install htop jwhois multitail apache2-utils strace rsync manpages man
 apt-get -y install unattended-upgrades
 gem install apt-spy2
 
+# remove old software
+apt-get -y autoremove
+apt-get -y clean
+
 #we have to reboot here, so the re-build of the virtualbox additions links against the new kernel/headers
 reboot
 
