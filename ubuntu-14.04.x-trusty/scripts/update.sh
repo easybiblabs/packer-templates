@@ -26,8 +26,14 @@ wget $EASYBIB_ZSHRC -O $VAGRANT_ZSHRC
 chown vagrant:vagrant $VAGRANT_ZSHRC
 usermod -s /bin/zsh vagrant
 
+# install required software
+apt-get -y install nfs-common ruby-dev
+apt-get -y install htop jwhois multitail apache2-utils strace rsync manpages manpages-dev nscd subversion git-core unzip
+apt-get -y install unattended-upgrades
+gem install apt-spy2
+
 #we have to reboot here, so the re-build of the virtualbox additions links against the new kernel/headers
 reboot
 
 #make sure we wait for the reboot, otherwise we will run in ugly race conditions
-sleep 999999 
+sleep 999999

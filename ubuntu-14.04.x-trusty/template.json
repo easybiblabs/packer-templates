@@ -148,8 +148,6 @@
             "scripts/chef-client.sh",
             "scripts/vagrant.sh",
             "scripts/networking.sh",
-            "scripts/sudoers.sh",
-            "scripts/additional-packages.sh",
             "scripts/cleanup.sh",
             "scripts/minimize.sh"
           ]
@@ -161,8 +159,6 @@
             "scripts/chef-client.sh",
             "scripts/vagrant.sh",
             "scripts/networking.sh",
-            "scripts/sudoers.sh",
-            "scripts/additional-packages.sh",
             "scripts/cleanup.sh",
             "scripts/minimize.sh"
           ]
