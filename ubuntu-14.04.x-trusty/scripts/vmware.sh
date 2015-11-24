@@ -1,5 +1,7 @@
 #!/bin/bash -eux
 
+echo " -> download & install VMware Tools"
+
 mkdir /tmp/vmfusion
 mkdir /tmp/vmfusion-archive
 mount -o loop /home/vagrant/linux.iso /tmp/vmfusion

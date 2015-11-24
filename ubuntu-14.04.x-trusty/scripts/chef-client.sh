@@ -1,5 +1,7 @@
 #!/bin/bash -eux
 
+echo " -> chef-client setup"
+
 CHEF_DEB=chef_11.10.4-1.ubuntu.11.04_amd64.deb
 TARGET="/tmp/${CHEF_DEB}"
 
