@@ -9,7 +9,6 @@ install:
   - which packer
 
 script:
-  - cd "${TRAVIS_BUILD_DIR}/ubuntu-12.04.4-precise" && packer validate template.json
   - cd "${TRAVIS_BUILD_DIR}/ubuntu-12.04.4-precise-chef11.10" && packer validate template.json
   - cd "${TRAVIS_BUILD_DIR}/ubuntu-14.04.x-trusty" && packer validate template.json
 
