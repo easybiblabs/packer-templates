@@ -10,6 +10,50 @@
         " console-setup/ask_detect=false<wait>",
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_hostname=ubuntu-1404<wait>",
+        " netcfg/get_domain=vagrantup.com<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 40960,
+      "guest_os_type": "linux",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_md5_checksum`}}",
+      "iso_checksum_type": "md5",
+      "iso_url": "{{user `iso_path`}}",
+      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "tools_upload_flavor": "linux",
+      "type": "vmware-iso",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "memsize": "512",
+        "numvcpus": "1"
+      }
+    },
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
         " debian-installer=en_US<wait>",
         " fb=false<wait>",
@@ -33,7 +77,7 @@
       "iso_checksum": "{{user `iso_md5_checksum`}}",
       "iso_checksum_type": "md5",
       "iso_url": "{{user `iso_path`}}",
-      "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -56,44 +100,81 @@
       "virtualbox_version_file": ".vbox_version"
     }
   ],
+  "description": "Vagrant Box for product development at ImagineEasy.com",
+  "min_packer_version": "0.7.8",
   "post-processors": [
-    {
-      "keep_input_artifact": false,
-      "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_{{.Provider}}-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box",
-      "type": "vagrant"
-    }
+    [
+      {
+        "keep_input_artifact": false,
+        "override": {
+          "virtualbox": {
+            "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vbox-{{user `virtualbox_version`}}_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          },
+          "vmware": {
+            "output": "imagineeasy-ubuntu-{{user `ubuntu_version`}}_vmware_chef-{{user `chef_version`}}_{{user `iteration`}}.box"
+          }
+        },
+        "type": "vagrant"
+      },
+      {
+        "artifact": "imagineeasy/vagrant",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "vmware_desktop",
+          "version": "{{user `iteration`}}"
+        },
+        "only": ["vmware-iso"],
+        "type": "atlas"
+      },
+      {
+        "artifact": "imagineeasy/vagrant",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "virtualbox",
+          "version": "{{user `iteration`}}"
+        },
+        "only": ["virtualbox-iso"],
+        "type": "atlas"
+      }
+    ]
   ],
   "provisioners": [
     {
+      "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'",
       "override": {
         "virtualbox-iso": {
-          "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+          "scripts": [
+            "scripts/update.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh",
+            "scripts/chef-client.sh",
+            "scripts/networking.sh",
+            "scripts/minimize.sh"
+          ]
+        },
+        "vmware-iso": {
+          "scripts": [
+            "scripts/update.sh",
+            "scripts/vagrant.sh",
+            "scripts/vmware.sh",
+            "scripts/chef-client.sh",
+            "scripts/networking.sh",
+            "scripts/minimize.sh"
+          ]
         }
       },
-      "scripts": [
-        "scripts/update.sh",
-        "scripts/chef-client.sh",
-        "scripts/vagrant.sh",
-        "scripts/networking.sh",
-        "scripts/sudoers.sh",
-        "scripts/additional-packages.sh",
-        "scripts/cleanup.sh",
-        "scripts/minimize.sh"
-      ],
       "type": "shell"
     }
   ],
-  "description": "Vagrant Box for product development at ImagineEasy.com",
-  "min_packer_version": "0.7.5",
   "push": {
-    "name": "imagineeasy/vagrant-test"
+    "name": "imagineeasy/vagrant"
   },
   "variables": {
     "chef_version": "11.10.4",
-    "iteration": "x.y.z",
     "iso_md5_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_path": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
+    "iteration": "2.0.8",
     "ubuntu_version": "14.04.3",
-    "virtualbox_version": "x.y.z"
+    "virtualbox_version": "4.3.30r101610"
   }
 }

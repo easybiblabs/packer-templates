@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo " -> minimizing image"
+
 # Credits to:
 #  - http://vstone.eu/reducing-vagrant-box-size/
 #  - https://github.com/mitchellh/vagrant/issues/343
@@ -16,29 +18,35 @@ apt-get remove -y --purge $(dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed
 apt-get remove -y linux-source*
 dpkg -l 'linux-*' |grep ^ii
 
-# Remove APT cache
+echo " -> remove APT cache"
+
 apt-get clean -y
 apt-get autoclean -y
 
-# Zero free space to aid VM compression
+echo " -> zero free space to aid VM compression"
+
 dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
 
-# Remove bash history
+echo " -> remove bash history"
+
 unset HISTFILE
 rm -f /root/.bash_history
 rm -f /home/vagrant/.bash_history
 
-# Cleanup log files
+echo " -> cleanup log files"
+
 find /var/log -type f | while read f; do echo -ne '' > $f; done;
 
-# Whiteout root
-count=`df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}'`; 
+echo " -> whiteout root"
+
+count=`df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}'`;
 let count--
 dd if=/dev/zero of=/tmp/whitespace bs=1024 count=$count;
 rm /tmp/whitespace;
 
-# Whiteout /boot
+echo " -> whiteout /boot"
+
 count=`df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}'`;
 let count--
 dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count;
@@ -49,3 +57,6 @@ swapoff $swappart;
 dd if=/dev/zero of=$swappart;
 mkswap $swappart;
 swapon $swappart;
+
+echo " -> sync"
+sync || true
