@@ -21,3 +21,9 @@ branches:
 notification:
   email:
     on_success: never
+
+deploy:
+  provider: script
+  script: cd "${TRAVIS_BUILD_DIR}/ubuntu-14.04.x-trusty" && packer push -name ies/vagrant-build template.json
+  on:
+    branch: master

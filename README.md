@@ -3,7 +3,21 @@ packer-templates
 
 These are [packer](http://www.packer.io/) templates for Ubuntu.
 
-* Ubuntu 10.04.4 is tested with packer 0.1.4.
-* Ubuntu 12.04.3 is tested with packer 0.3.5.
-* Ubuntu 12.04.4 is tested with packer 0.5.1.
-* Ubuntu 14.04.x is tested with packer 0.7.5.
+## Releasing a new version
+
+ * make changes in the designated `template.json`
+ * increment `iteration` in the `template.json`
+ * test build the boxes locally
+ * make a PR
+ * on merge, it will push the new version to Atlas
+ * verify: https://atlas.hashicorp.com/ies
+
+Note: at this time, only ubuntu-14.04.x-trusty will be pushed up.
+
+## Building on localhost
+
+```
+$ packer build -only=virtualbox-iso template.json
+```
+
+Omit `-only` if you have VMware installed also.
