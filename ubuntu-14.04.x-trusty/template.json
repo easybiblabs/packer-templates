@@ -117,7 +117,7 @@
         "type": "vagrant"
       },
       {
-        "artifact": "imagineeasy/vagrant",
+        "artifact": "ies/vagrant-ubuntu_{{user `ubuntu_version`}}-chef_{{user `chef_version`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
           "provider": "vmware_desktop",
@@ -127,7 +127,7 @@
         "type": "atlas"
       },
       {
-        "artifact": "imagineeasy/vagrant",
+        "artifact": "ies/vagrant-ubuntu_{{user `ubuntu_version`}}-chef_{{user `chef_version`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
           "provider": "virtualbox",
