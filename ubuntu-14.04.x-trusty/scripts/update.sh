@@ -32,7 +32,8 @@ VAGRANT_ZSHRC=/home/vagrant/.zshrc
 EASYBIB_ZSHRC=https://gist.github.com/till/f683a2237571936c2df2/raw/201a181e0fe647d3922246758e7c07d96f59f6cc/.zshrc
 wget $EASYBIB_ZSHRC -O $VAGRANT_ZSHRC
 chown vagrant:vagrant $VAGRANT_ZSHRC
-usermod -s /bin/zsh vagrant
+# Do not do this by default: https://github.com/easybib/ops/issues/209#issuecomment-251952095
+# usermod -s /bin/zsh vagrant
 
 echo " -> install required software"
 
